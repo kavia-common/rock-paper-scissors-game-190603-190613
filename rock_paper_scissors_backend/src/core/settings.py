@@ -17,9 +17,20 @@ def get_cors_settings() -> CORSSettings:
 
     Note:
         No env vars used per project note; centralized for easy future changes.
+
+    CORS policy:
+        - Explicitly allow the React frontend on http://localhost:3000
+        - Also permit common localhost variations and 127.0.0.1 to support local dev
+        - Keep credentials enabled and allow all methods/headers
     """
+    allowed_frontend_origins = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://localhost:3000",
+        "https://127.0.0.1:3000",
+    ]
     return CORSSettings(
-        allow_origins=["*"],
+        allow_origins=allowed_frontend_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],

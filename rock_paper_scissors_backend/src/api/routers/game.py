@@ -20,15 +20,18 @@ _service = GameService()
         }
     },
 )
+# PUBLIC_INTERFACE
 def play(req: PlayRequest) -> PlayResponse:
     """Play a round of Rock-Paper-Scissors.
 
     Parameters:
-        req (PlayRequest): Body containing the player's choice.
+        req (PlayRequest): Body containing the player's choice string in {'rock'|'paper'|'scissors'}.
 
     Returns:
-        PlayResponse: The player's choice, computer's choice, and the result
-        ('win', 'lose', or 'draw') from the player's perspective.
+        PlayResponse: JSON with fields:
+            - player: str, echo of player's choice
+            - computer: str, randomly chosen move
+            - result: str, one of {'win','lose','draw'} from player's perspective
     """
     outcome = _service.play(Choice(req.choice))
     return PlayResponse(**_service.to_dict(outcome))
