@@ -1,0 +1,4 @@
+{
+    "command": "pytest",
+    "working_directory": "/home/kavia/workspace/code-generation/rock-paper-scissors-game-190603-190613/rock_paper_scissors_backend"
+}
