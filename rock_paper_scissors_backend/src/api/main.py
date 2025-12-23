@@ -1,16 +1,5 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from src.api.app import create_app
 
-app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-@app.get("/")
-def health_check():
-    return {"message": "Healthy"}
+# PUBLIC_INTERFACE
+# FastAPI app instance used by ASGI servers and tooling.
+app = create_app()
